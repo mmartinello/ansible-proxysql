@@ -88,10 +88,9 @@ proxysql_use_percona_repo: False
 # Type: Str
 proxysql_percona_release: latest
 
-# The ProxySQL version which should be installed if not using the ProxySQL
-# repository.
+# The ProxySQL version which should be installed
 # Type: Int
-proxysql_version: 1.4.15
+proxysql_version: 2.4
 
 # Configuration
 
