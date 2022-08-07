@@ -1,8 +1,14 @@
 ---
+- name: Set the ProxySQL package name
+  set_fact:
+    proxysql_pkg_name: "{% if proxysql_use_official_repo %}proxysql{% elif proxysql_use_percona_repo %}proxysql2{% endif %}"
+  when: >
+        proxysql_use_official_repo or
+        proxysql_use_percona_repo
 
 - name: Install ProxySQL from repository
   package:
-    name: "{{ proxysql_pkgs }}"
+    name: "{{ proxysql_pkg_name }}"
     state: present
     update_cache: "{{ omit if ((ansible_pkg_mgr == 'dnf') and (ansible_version is version('2.7', '<'))) else 'yes' }}"
   delay: 10
